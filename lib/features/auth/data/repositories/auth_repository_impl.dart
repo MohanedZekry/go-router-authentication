@@ -22,12 +22,13 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, bool>> signIn() async {
+  Future<Either<Failure, bool>> signIn(bool status) async {
     try{
-      final response = await authLocalDataSource.signIn();
+      final response = await authLocalDataSource.signIn(status);
       return Right(response);
     } on ConnectionException {
       return Left(ConnectionFailure());
     }
   }
+
 }

@@ -25,10 +25,10 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   }
 
   @override
-  Future<bool> signIn() async {
+  Future<bool> signIn(bool status) async {
     try{
       final authBox = Hive.box<Auth>(_kAuthBox);
-      final convertedTask = Auth(isLoggedIn: true);
+      final convertedTask = Auth(isLoggedIn: status);
       await authBox.add(convertedTask);
       return Future.value(true);
     } catch (_) {

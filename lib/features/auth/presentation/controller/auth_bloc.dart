@@ -13,18 +13,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc({required this.loginUseCase, required this.isLoggedInUseCase}) : super(const AuthState.initial()) {
     on<AuthEvent>((event, emit) async {
       if(event is LoginEvent){
-        final response = await loginUseCase(const DefaultParams());
+        final response = await loginUseCase(event.status);
         response.fold(
                 (l) => emit(const AuthState.failed()),
-                (r) => emit(const AuthState.success())
+                (r) => emit(AuthState.success(r))
         );
       }else if(event is IsLoggedInEvent){
-        final response = await loginUseCase(const DefaultParams());
+        final response = await isLoggedInUseCase(const DefaultParams());
         response.fold(
                 (l) => emit(const AuthState.failed()),
                 (r) {
               if(r){
-                emit(const AuthState.success());
+                emit(AuthState.success(r));
               }else{
                 emit(const AuthState.failed());
               }

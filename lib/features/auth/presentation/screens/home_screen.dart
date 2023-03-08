@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:gorouter_auth/app/routes/app_router.dart';
+import '../../../../app/routes/route_utils.dart';
 import '../controller/auth_bloc.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -8,24 +9,36 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    late Widget finalView;
+
     return Scaffold(
-      body: BlocBuilder<AuthBloc, AuthState>(
+      body: BlocConsumer<AuthBloc, AuthState>(
+        listener: (context, state) {
+          state.when(
+              initial: () {},
+              success: (s){},
+              failed: () => AppRouter.router.go(PAGES.login.screenPath));
+        },
         builder: (context, state) {
           state.when(
-              initial: () => const SizedBox(),
-              success: () => Center(
+              initial: () => finalView = const SizedBox(),
+              success: (r) => finalView = Center(
                 child: TextButton(
                   child: const Text(
                     'Logout',
                   ),
                   onPressed: () {
-
+                    context.read<AuthBloc>().loginUseCase(false);
+                    AppRouter.router.go(PAGES.login.screenPath);
                   },
                 ),
               ),
-              failed: () => const SizedBox(),
+              failed: () {
+                finalView = const SizedBox();
+                //AppRouter.router.go(PAGES.login.screenPath);
+              },
           );
-          return const SizedBox();
+          return finalView;
         },
       ),
     );
