@@ -6,7 +6,7 @@ enum PAGES {
 
 extension AppPageExtension on PAGES {
 
-  String get appPath {
+  String get screenPath {
     switch (this) {
       case PAGES.home:
         return "/";
@@ -19,7 +19,7 @@ extension AppPageExtension on PAGES {
     }
   }
 
-  String get appName {
+  String get screenName {
     switch (this) {
       case PAGES.home:
         return "HOME";
@@ -32,7 +32,7 @@ extension AppPageExtension on PAGES {
     }
   }
 
-  String get appTitle {
+  String get screenTitle {
     switch (this) {
       case PAGES.home:
         return "Home";
