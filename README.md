@@ -11,3 +11,10 @@ This is an example shows how to use go_router for authentication with BLoC as st
 - [Screenshots](#screenshots)
 - [Implementation](#implementation)
 - [Conclusion?](#conclusion)
+
+## Requirements
+- [bloc](https://pub.dev/packages/flutter_bloc) for state management
+- [go_router](https://pub.dev/packages/go_router) for navigation
+- [hive](https://pub.dev/packages/hive) as local storage
+- [freezed](https://pub.dev/packages/freezed) using as code generation for immutable classes
+- [dartz](https://pub.dev/packages/dartz) for functional programming
