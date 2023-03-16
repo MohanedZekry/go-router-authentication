@@ -18,3 +18,8 @@ This is an example shows how to use go_router for authentication with BLoC as st
 - [hive](https://pub.dev/packages/hive) as local storage
 - [freezed](https://pub.dev/packages/freezed) using as code generation for immutable classes
 - [dartz](https://pub.dev/packages/dartz) for functional programming
+
+## Intro
+This example is built using go_router 6.2.0.
+Build authentication example with go_router.
+Instead of using buildBody and currentIndex for routing, we’ll be using go router to navigate between screens.
